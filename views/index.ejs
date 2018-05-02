@@ -17,801 +17,243 @@
 </head>
 <body>
     <div class="entireThing">
-        <div class="horizontalBar"><h2>AbstractR</h2></div>
+        <div class="horizontalBar"><h2>Abstractfindr</h2></div>
         <div class="container-mine">
-            <div class="item item1">
-                <div class="top">
-                    <div class="title">
-                        <h4><%= docs[0].title %></h4>
+            <% for(var i = 0; i < 4; i++) {%>
+                <div class="item item<%=i+1%>">
+                    <div class="top">
+                        <div class="title">
+                            <h4><%= docs[i].title %></h4>
+                        </div>
+                        <div class="expandButton">
+                            <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
+                        </div>
                     </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
+                    <br>
+                    <p><%= docs[i].abstract %></p>
                 </div>
-                <br>
-                <p><%= docs[0].abstract %></p>
-            </div>
-            <div class="item item2">
-                <div class="top">
-                    <div class="title">
-                        <h4><%= docs[1].title %></h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <br>
-                <p><%= docs[1].abstract %></p>
-            </div>
-            <div class="item item3">
-                <div class="top">
-                    <div class="title">
-                        <h4><%= docs[2].title %></h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <br>
-                <p><%= docs[2].abstract %></p>
-            </div>
-            <div class="item item4">
-                <div class="top">
-                    <div class="title">
-                        <h4><%= docs[3].title %></h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <br>
-                <p><%= docs[3].abstract %></p>
-            </div>
-            <div class="item bottomItem bottomItem1" data-docID="<%= docs[0].idfiles %>">
-                <% if(showDownloads > 0){ %>
-                    <% if(worldNum == 1){ %>
-                        <% if(control == 'L'){ %>
-                            <% if(lowHigh == 'l'){ %>
-                                <span>Downloads: <%= docs[0].downloads_L_l_1%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[0].downloads_L_r_1%></span>
-                            <% } %>
-                        <% }else if(control == 'H'){ %>
-                            <% if(lowHigh == 'h'){ %>
-                                <span>Downloads: <%= docs[0].downloads_H_h_1%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[0].downloads_H_r_1%></span>
-                            <% } %>
-                        <% } %>
-                    <% }else if(worldNum == 2){ %>
-                        <% if(control == 'L'){ %>
-                            <% if(lowHigh == 'l'){ %>
-                                <span>Downloads: <%= docs[0].downloads_L_l_2%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[0].downloads_L_r_2%></span>
-                            <% } %>
-                        <% }else if(control == 'H'){ %>
-                            <% if(lowHigh == 'h'){ %>
-                                <span>Downloads: <%= docs[0].downloads_H_h_2%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[0].downloads_H_r_2%></span>
-                            <% } %>
-                        <% } %>             
-                    <% }else if(worldNum == 3){ %>
-                        <% if(control == 'L'){ %>
-                            <% if(lowHigh == 'l'){ %>
-                                <span>Downloads: <%= docs[0].downloads_L_l_3%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[0].downloads_L_r_3%></span>
-                            <% } %>
-                        <% }else if(control == 'H'){ %>
-                            <% if(lowHigh == 'h'){ %>
-                                <span>Downloads: <%= docs[0].downloads_H_h_3%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[0].downloads_H_r_3%></span>
-                            <% } %>
-                        <% } %>                       
-                    <% }else{ %>
-                        <% if(control == 'L'){ %>
-                            <% if(lowHigh == 'l'){ %>
-                                <span>Downloads: <%= docs[0].downloads_L_l_4%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[0].downloads_L_r_4%></span>
-                            <% } %>
-                        <% }else if(control == 'H'){ %>
-                            <% if(lowHigh == 'h'){ %>
-                                <span>Downloads: <%= docs[0].downloads_H_h_4%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[0].downloads_H_r_4%></span>
-                            <% } %>
-                        <% } %>                      
-                    <% } %>
-                <% } %>
-            </div>
-            <div class="item bottomItem bottomItem2" data-docID="<%= docs[1].idfiles %>">
-                <% if(showDownloads > 0){ %>
-                    <% if(worldNum == 1){ %>
-                        <% if(control == 'L'){ %>
-                            <% if(lowHigh == 'l'){ %>
-                                <span>Downloads: <%= docs[1].downloads_L_l_1%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[1].downloads_L_r_1%></span>
-                            <% } %>
-                        <% }else if(control == 'H'){ %>
-                            <% if(lowHigh == 'h'){ %>
-                                <span>Downloads: <%= docs[1].downloads_H_h_1%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[1].downloads_H_r_1%></span>
-                            <% } %>
-                        <% } %>
-                    <% }else if(worldNum == 2){ %>
-                        <% if(control == 'L'){ %>
-                            <% if(lowHigh == 'l'){ %>
-                                <span>Downloads: <%= docs[1].downloads_L_l_2%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[1].downloads_L_r_2%></span>
-                            <% } %>
-                        <% }else if(control == 'H'){ %>
-                            <% if(lowHigh == 'h'){ %>
-                                <span>Downloads: <%= docs[1].downloads_H_h_2%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[1].downloads_H_r_2%></span>
-                            <% } %>
-                        <% } %>             
-                    <% }else if(worldNum == 3){ %>
-                        <% if(control == 'L'){ %>
-                            <% if(lowHigh == 'l'){ %>
-                                <span>Downloads: <%= docs[1].downloads_L_l_3%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[1].downloads_L_r_3%></span>
-                            <% } %>
-                        <% }else if(control == 'H'){ %>
-                            <% if(lowHigh == 'h'){ %>
-                                <span>Downloads: <%= docs[1].downloads_H_h_3%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[1].downloads_H_r_3%></span>
-                            <% } %>
-                        <% } %>                       
-                    <% }else{ %>
-                        <% if(control == 'L'){ %>
-                            <% if(lowHigh == 'l'){ %>
-                                <span>Downloads: <%= docs[1].downloads_L_l_4%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[1].downloads_L_r_4%></span>
-                            <% } %>
-                        <% }else if(control == 'H'){ %>
-                            <% if(lowHigh == 'h'){ %>
-                                <span>Downloads: <%= docs[1].downloads_H_h_4%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[1].downloads_H_r_4%></span>
-                            <% } %>
-                        <% } %>                      
-                    <% } %>
-                <% } %>
-            </div>
-            <div class="item bottomItem bottomItem3" data-docID="<%= docs[2].idfiles %>">
-                <% if(showDownloads > 0){ %>
-                    <% if(worldNum == 1){ %>
-                        <% if(control == 'L'){ %>
-                            <% if(lowHigh == 'l'){ %>
-                                <span>Downloads: <%= docs[2].downloads_L_l_1%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[2].downloads_L_r_1%></span>
-                            <% } %>
-                        <% }else if(control == 'H'){ %>
-                            <% if(lowHigh == 'h'){ %>
-                                <span>Downloads: <%= docs[2].downloads_H_h_1%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[2].downloads_H_r_1%></span>
-                            <% } %>
-                        <% } %>
-                    <% }else if(worldNum == 2){ %>
-                        <% if(control == 'L'){ %>
-                            <% if(lowHigh == 'l'){ %>
-                                <span>Downloads: <%= docs[2].downloads_L_l_2%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[2].downloads_L_r_2%></span>
-                            <% } %>
-                        <% }else if(control == 'H'){ %>
-                            <% if(lowHigh == 'h'){ %>
-                                <span>Downloads: <%= docs[2].downloads_H_h_2%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[2].downloads_H_r_2%></span>
-                            <% } %>
-                        <% } %>             
-                    <% }else if(worldNum == 3){ %>
-                        <% if(control == 'L'){ %>
-                            <% if(lowHigh == 'l'){ %>
-                                <span>Downloads: <%= docs[2].downloads_L_l_3%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[2].downloads_L_r_3%></span>
-                            <% } %>
-                        <% }else if(control == 'H'){ %>
-                            <% if(lowHigh == 'h'){ %>
-                                <span>Downloads: <%= docs[2].downloads_H_h_3%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[2].downloads_H_r_3%></span>
-                            <% } %>
-                        <% } %>                       
-                    <% }else{ %>
-                        <% if(control == 'L'){ %>
-                            <% if(lowHigh == 'l'){ %>
-                                <span>Downloads: <%= docs[2].downloads_L_l_4%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[2].downloads_L_r_4%></span>
-                            <% } %>
-                        <% }else if(control == 'H'){ %>
-                            <% if(lowHigh == 'h'){ %>
-                                <span>Downloads: <%= docs[2].downloads_H_h_4%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[2].downloads_H_r_4%></span>
-                            <% } %>
-                        <% } %>                      
-                    <% } %>
-                <% } %>
-            </div>
-            <div class="item bottomItem bottomItem4" data-docID="<%= docs[3].idfiles %>">
-                <% if(showDownloads > 0){ %>
-                    <% if(worldNum == 1){ %>
-                        <% if(control == 'L'){ %>
-                            <% if(lowHigh == 'l'){ %>
-                                <span>Downloads: <%= docs[3].downloads_L_l_1%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[3].downloads_L_r_1%></span>
-                            <% } %>
-                        <% }else if(control == 'H'){ %>
-                            <% if(lowHigh == 'h'){ %>
-                                <span>Downloads: <%= docs[3].downloads_H_h_1%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[3].downloads_H_r_1%></span>
-                            <% } %>
-                        <% } %>
-                    <% }else if(worldNum == 2){ %>
-                        <% if(control == 'L'){ %>
-                            <% if(lowHigh == 'l'){ %>
-                                <span>Downloads: <%= docs[3].downloads_L_l_2%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[3].downloads_L_r_2%></span>
-                            <% } %>
-                        <% }else if(control == 'H'){ %>
-                            <% if(lowHigh == 'h'){ %>
-                                <span>Downloads: <%= docs[3].downloads_H_h_2%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[3].downloads_H_r_2%></span>
-                            <% } %>
-                        <% } %>             
-                    <% }else if(worldNum == 3){ %>
-                        <% if(control == 'L'){ %>
-                            <% if(lowHigh == 'l'){ %>
-                                <span>Downloads: <%= docs[3].downloads_L_l_3%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[3].downloads_L_r_3%></span>
-                            <% } %>
-                        <% }else if(control == 'H'){ %>
-                            <% if(lowHigh == 'h'){ %>
-                                <span>Downloads: <%= docs[3].downloads_H_h_3%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[3].downloads_H_r_3%></span>
-                            <% } %>
-                        <% } %>                       
-                    <% }else{ %>
-                        <% if(control == 'L'){ %>
-                            <% if(lowHigh == 'l'){ %>
-                                <span>Downloads: <%= docs[3].downloads_L_l_4%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[3].downloads_L_r_4%></span>
-                            <% } %>
-                        <% }else if(control == 'H'){ %>
-                            <% if(lowHigh == 'h'){ %>
-                                <span>Downloads: <%= docs[3].downloads_H_h_4%></span>
-                            <% }else if(lowHigh == 'r'){ %>
-                                <span>Downloads: <%= docs[3].downloads_H_r_4%></span>
-                            <% } %>
-                        <% } %>                      
-                    <% } %>
-                <% } %>
-            </div>
-        </div>
-        <div class="container-mine">
-            <div class="item item5">
-                <div class="top">
-                    <div class="title">
-                        <h4><%= docs[4].title %></h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <br>
-                <p><%= docs[4].abstract %></p>
-            </div>
-            <div class="item item6">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Praesent suscipit placerat nibh vel dignissim. Vestibulum mattis nunc non posuere dapibus. Sed dapibus, ligula at auctor pretium, orci libero accumsan nulla, eu sagittis sapien erat sed nibh. Etiam quis vulputate erat. Maecenas sagittis orci id ipsum fermentum dapibus. Nam id elementum ligula, et venenatis mauris. Vestibulum nibh velit, tempor sed leo et, maximus commodo sem. Integer mattis nec augue sed eleifend. Nam feugiat lacus sed lectus varius, vel venenatis ante fermentum. Pellentesque mattis nunc ut elit accumsan, eget scelerisque lacus vestibulum. Etiam sed dui metus. Morbi id malesuada quam. Ut orci diam, tincidunt a odio ut, scelerisque tincidunt ipsum.</p>
-            </div>
-            <div class="item item7">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Vestibulum justo felis, facilisis vel lobortis vel, malesuada sit amet eros. Duis eget placerat tortor. Praesent ac massa non lorem gravida feugiat nec quis erat. Sed a ornare diam. Nam eleifend dui eget lacus ultrices, eu dignissim arcu sollicitudin. Nunc rutrum vestibulum elit, ut pellentesque massa dictum a. Nulla et erat eros. Ut auctor, risus et tincidunt varius, ante ex tempor massa, a ultricies massa sapien eget lacus. Vivamus sit amet tortor libero. Quisque vitae posuere lectus.</p>
-            </div>
-            <div class="item item8">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Phasellus justo sem, tristique vitae ex et, faucibus condimentum est. Vivamus in suscipit odio, eget gravida erat. Nunc auctor metus aliquam ullamcorper consequat. Cras tempus efficitur feugiat. Aliquam magna nisl, consectetur sit amet nisi at, gravida volutpat nulla. Etiam ac iaculis sem. Sed et libero mollis lorem porttitor tristique. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-            </div>
-            <div class="item bottomItem bottomItem5">
-                <div class="download">
-                    <a data-docID="<%= docs[4].idfiles %>" href="pdfs/<%= docs[4].name %>" download><button class="downloadButton" type="">Download</button></a>
+            <% } %>
+            <% for(var i = 0; i < 4; i++) {%>
+                <div class="item bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
                     <% if(showDownloads > 0){ %>
                         <% if(worldNum == 1){ %>
-                            <span data-docID="<%= docs[4].idfiles %>">Downloads: <%= docs[4].downloads_1%></span>
+                            <% if(control == 'L'){ %>
+                                <% if(lowHigh == 'l'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                <% } %>
+                            <% }else if(control == 'H'){ %>
+                                <% if(lowHigh == 'h'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                <% } %>
+                            <% } %>
                         <% }else if(worldNum == 2){ %>
-                            <span data-docID="<%= docs[4].idfiles %>">Downloads: <%= docs[4].downloads_2%></span>                        
+                            <% if(control == 'L'){ %>
+                                <% if(lowHigh == 'l'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                <% } %>
+                            <% }else if(control == 'H'){ %>
+                                <% if(lowHigh == 'h'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                <% } %>
+                            <% } %>             
                         <% }else if(worldNum == 3){ %>
-                            <span data-docID="<%= docs[4].idfiles %>">Downloads: <%= docs[4].downloads_3%></span>                        
+                            <% if(control == 'L'){ %>
+                                <% if(lowHigh == 'l'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                <% } %>
+                            <% }else if(control == 'H'){ %>
+                                <% if(lowHigh == 'h'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                <% } %>
+                            <% } %>                       
                         <% }else{ %>
-                            <span data-docID="<%= docs[4].idfiles %>">Downloads: <%= docs[4].downloads_4%></span>                        
+                            <% if(control == 'L'){ %>
+                                <% if(lowHigh == 'l'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                <% } %>
+                            <% }else if(control == 'H'){ %>
+                                <% if(lowHigh == 'h'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                <% } %>
+                            <% } %>                      
                         <% } %>
                     <% } %>
                 </div>
-            </div>
-            <div class="item bottomItem bottomItem2">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem3">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem4">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
+            <% } %>
         </div>
         <div class="container-mine">
-            <div class="item item5">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
+            <% for(var i = 4; i < 8; i++) {%>
+                <div class="item item<%=i+1%>">
+                    <div class="top">
+                        <div class="title">
+                            <h4><%= docs[i].title %></h4>
+                        </div>
+                        <div class="expandButton">
+                            <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
+                        </div>
                     </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
+                    <br>
+                    <p><%= docs[i].abstract %></p>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at erat auctor quam efficitur condimentum eget eget augue. Aliquam at aliquam nisl. Praesent non augue commodo, ultricies enim quis, aliquam justo. Nulla nec posuere sapien. Pellentesque sollicitudin nulla a vehicula tempus. Maecenas venenatis nibh ex, quis cursus est hendrerit sed. Etiam hendrerit blandit tincidunt.</p>
-            </div>
-            <div class="item item6">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
+            <% } %>
+            <% for(var i = 4; i < 8; i++) {%>
+                <div class="item bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                    <% if(showDownloads > 0){ %>
+                        <% if(worldNum == 1){ %>
+                            <% if(control == 'L'){ %>
+                                <% if(lowHigh == 'l'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                <% } %>
+                            <% }else if(control == 'H'){ %>
+                                <% if(lowHigh == 'h'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                <% } %>
+                            <% } %>
+                        <% }else if(worldNum == 2){ %>
+                            <% if(control == 'L'){ %>
+                                <% if(lowHigh == 'l'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                <% } %>
+                            <% }else if(control == 'H'){ %>
+                                <% if(lowHigh == 'h'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                <% } %>
+                            <% } %>             
+                        <% }else if(worldNum == 3){ %>
+                            <% if(control == 'L'){ %>
+                                <% if(lowHigh == 'l'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                <% } %>
+                            <% }else if(control == 'H'){ %>
+                                <% if(lowHigh == 'h'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                <% } %>
+                            <% } %>                       
+                        <% }else{ %>
+                            <% if(control == 'L'){ %>
+                                <% if(lowHigh == 'l'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                <% } %>
+                            <% }else if(control == 'H'){ %>
+                                <% if(lowHigh == 'h'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                <% } %>
+                            <% } %>                      
+                        <% } %>
+                    <% } %>
                 </div>
-                <p>Praesent suscipit placerat nibh vel dignissim. Vestibulum mattis nunc non posuere dapibus. Sed dapibus, ligula at auctor pretium, orci libero accumsan nulla, eu sagittis sapien erat sed nibh. Etiam quis vulputate erat. Maecenas sagittis orci id ipsum fermentum dapibus. Nam id elementum ligula, et venenatis mauris. Vestibulum nibh velit, tempor sed leo et, maximus commodo sem. Integer mattis nec augue sed eleifend. Nam feugiat lacus sed lectus varius, vel venenatis ante fermentum. Pellentesque mattis nunc ut elit accumsan, eget scelerisque lacus vestibulum. Etiam sed dui metus. Morbi id malesuada quam. Ut orci diam, tincidunt a odio ut, scelerisque tincidunt ipsum.</p>
-            </div>
-            <div class="item item7">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Vestibulum justo felis, facilisis vel lobortis vel, malesuada sit amet eros. Duis eget placerat tortor. Praesent ac massa non lorem gravida feugiat nec quis erat. Sed a ornare diam. Nam eleifend dui eget lacus ultrices, eu dignissim arcu sollicitudin. Nunc rutrum vestibulum elit, ut pellentesque massa dictum a. Nulla et erat eros. Ut auctor, risus et tincidunt varius, ante ex tempor massa, a ultricies massa sapien eget lacus. Vivamus sit amet tortor libero. Quisque vitae posuere lectus.</p>
-            </div>
-            <div class="item item8">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Phasellus justo sem, tristique vitae ex et, faucibus condimentum est. Vivamus in suscipit odio, eget gravida erat. Nunc auctor metus aliquam ullamcorper consequat. Cras tempus efficitur feugiat. Aliquam magna nisl, consectetur sit amet nisi at, gravida volutpat nulla. Etiam ac iaculis sem. Sed et libero mollis lorem porttitor tristique. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-            </div>
-            <div class="item bottomItem bottomItem1">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem2">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem3">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem4">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
+            <% } %>
         </div>
         <div class="container-mine">
-            <div class="item item5">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
+            <% for(var i = 8; i < 12; i++) {%>
+                <div class="item item<%=i+1%>">
+                    <div class="top">
+                        <div class="title">
+                            <h4><%= docs[i].title %></h4>
+                        </div>
+                        <div class="expandButton">
+                            <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
+                        </div>
                     </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
+                    <br>
+                    <p><%= docs[i].abstract %></p>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at erat auctor quam efficitur condimentum eget eget augue. Aliquam at aliquam nisl. Praesent non augue commodo, ultricies enim quis, aliquam justo. Nulla nec posuere sapien. Pellentesque sollicitudin nulla a vehicula tempus. Maecenas venenatis nibh ex, quis cursus est hendrerit sed. Etiam hendrerit blandit tincidunt.</p>
-            </div>
-            <div class="item item6">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
+            <% } %>
+            <% for(var i = 8; i < 12; i++) {%>
+                <div class="item bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                    <% if(showDownloads > 0){ %>
+                        <% if(worldNum == 1){ %>
+                            <% if(control == 'L'){ %>
+                                <% if(lowHigh == 'l'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                <% } %>
+                            <% }else if(control == 'H'){ %>
+                                <% if(lowHigh == 'h'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                <% } %>
+                            <% } %>
+                        <% }else if(worldNum == 2){ %>
+                            <% if(control == 'L'){ %>
+                                <% if(lowHigh == 'l'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                <% } %>
+                            <% }else if(control == 'H'){ %>
+                                <% if(lowHigh == 'h'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                <% } %>
+                            <% } %>             
+                        <% }else if(worldNum == 3){ %>
+                            <% if(control == 'L'){ %>
+                                <% if(lowHigh == 'l'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                <% } %>
+                            <% }else if(control == 'H'){ %>
+                                <% if(lowHigh == 'h'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                <% } %>
+                            <% } %>                       
+                        <% }else{ %>
+                            <% if(control == 'L'){ %>
+                                <% if(lowHigh == 'l'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                <% } %>
+                            <% }else if(control == 'H'){ %>
+                                <% if(lowHigh == 'h'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                <% }else if(lowHigh == 'r'){ %>
+                                    <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                <% } %>
+                            <% } %>                      
+                        <% } %>
+                    <% } %>
                 </div>
-                <p>Praesent suscipit placerat nibh vel dignissim. Vestibulum mattis nunc non posuere dapibus. Sed dapibus, ligula at auctor pretium, orci libero accumsan nulla, eu sagittis sapien erat sed nibh. Etiam quis vulputate erat. Maecenas sagittis orci id ipsum fermentum dapibus. Nam id elementum ligula, et venenatis mauris. Vestibulum nibh velit, tempor sed leo et, maximus commodo sem. Integer mattis nec augue sed eleifend. Nam feugiat lacus sed lectus varius, vel venenatis ante fermentum. Pellentesque mattis nunc ut elit accumsan, eget scelerisque lacus vestibulum. Etiam sed dui metus. Morbi id malesuada quam. Ut orci diam, tincidunt a odio ut, scelerisque tincidunt ipsum.</p>
-            </div>
-            <div class="item item7">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Vestibulum justo felis, facilisis vel lobortis vel, malesuada sit amet eros. Duis eget placerat tortor. Praesent ac massa non lorem gravida feugiat nec quis erat. Sed a ornare diam. Nam eleifend dui eget lacus ultrices, eu dignissim arcu sollicitudin. Nunc rutrum vestibulum elit, ut pellentesque massa dictum a. Nulla et erat eros. Ut auctor, risus et tincidunt varius, ante ex tempor massa, a ultricies massa sapien eget lacus. Vivamus sit amet tortor libero. Quisque vitae posuere lectus.</p>
-            </div>
-            <div class="item item8">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Phasellus justo sem, tristique vitae ex et, faucibus condimentum est. Vivamus in suscipit odio, eget gravida erat. Nunc auctor metus aliquam ullamcorper consequat. Cras tempus efficitur feugiat. Aliquam magna nisl, consectetur sit amet nisi at, gravida volutpat nulla. Etiam ac iaculis sem. Sed et libero mollis lorem porttitor tristique. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-            </div>
-            <div class="item bottomItem bottomItem1">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem2">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem3">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem4">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-        </div>
-        <div class="container-mine">
-            <div class="item item5">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at erat auctor quam efficitur condimentum eget eget augue. Aliquam at aliquam nisl. Praesent non augue commodo, ultricies enim quis, aliquam justo. Nulla nec posuere sapien. Pellentesque sollicitudin nulla a vehicula tempus. Maecenas venenatis nibh ex, quis cursus est hendrerit sed. Etiam hendrerit blandit tincidunt.</p>
-            </div>
-            <div class="item item6">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Praesent suscipit placerat nibh vel dignissim. Vestibulum mattis nunc non posuere dapibus. Sed dapibus, ligula at auctor pretium, orci libero accumsan nulla, eu sagittis sapien erat sed nibh. Etiam quis vulputate erat. Maecenas sagittis orci id ipsum fermentum dapibus. Nam id elementum ligula, et venenatis mauris. Vestibulum nibh velit, tempor sed leo et, maximus commodo sem. Integer mattis nec augue sed eleifend. Nam feugiat lacus sed lectus varius, vel venenatis ante fermentum. Pellentesque mattis nunc ut elit accumsan, eget scelerisque lacus vestibulum. Etiam sed dui metus. Morbi id malesuada quam. Ut orci diam, tincidunt a odio ut, scelerisque tincidunt ipsum.</p>
-            </div>
-            <div class="item item7">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Vestibulum justo felis, facilisis vel lobortis vel, malesuada sit amet eros. Duis eget placerat tortor. Praesent ac massa non lorem gravida feugiat nec quis erat. Sed a ornare diam. Nam eleifend dui eget lacus ultrices, eu dignissim arcu sollicitudin. Nunc rutrum vestibulum elit, ut pellentesque massa dictum a. Nulla et erat eros. Ut auctor, risus et tincidunt varius, ante ex tempor massa, a ultricies massa sapien eget lacus. Vivamus sit amet tortor libero. Quisque vitae posuere lectus.</p>
-            </div>
-            <div class="item item8">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Phasellus justo sem, tristique vitae ex et, faucibus condimentum est. Vivamus in suscipit odio, eget gravida erat. Nunc auctor metus aliquam ullamcorper consequat. Cras tempus efficitur feugiat. Aliquam magna nisl, consectetur sit amet nisi at, gravida volutpat nulla. Etiam ac iaculis sem. Sed et libero mollis lorem porttitor tristique. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-            </div>
-            <div class="item bottomItem bottomItem1">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem2">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem3">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem4">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-        </div>
-        <div class="container-mine">
-            <div class="item item5">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at erat auctor quam efficitur condimentum eget eget augue. Aliquam at aliquam nisl. Praesent non augue commodo, ultricies enim quis, aliquam justo. Nulla nec posuere sapien. Pellentesque sollicitudin nulla a vehicula tempus. Maecenas venenatis nibh ex, quis cursus est hendrerit sed. Etiam hendrerit blandit tincidunt.</p>
-            </div>
-            <div class="item item6">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Praesent suscipit placerat nibh vel dignissim. Vestibulum mattis nunc non posuere dapibus. Sed dapibus, ligula at auctor pretium, orci libero accumsan nulla, eu sagittis sapien erat sed nibh. Etiam quis vulputate erat. Maecenas sagittis orci id ipsum fermentum dapibus. Nam id elementum ligula, et venenatis mauris. Vestibulum nibh velit, tempor sed leo et, maximus commodo sem. Integer mattis nec augue sed eleifend. Nam feugiat lacus sed lectus varius, vel venenatis ante fermentum. Pellentesque mattis nunc ut elit accumsan, eget scelerisque lacus vestibulum. Etiam sed dui metus. Morbi id malesuada quam. Ut orci diam, tincidunt a odio ut, scelerisque tincidunt ipsum.</p>
-            </div>
-            <div class="item item7">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Vestibulum justo felis, facilisis vel lobortis vel, malesuada sit amet eros. Duis eget placerat tortor. Praesent ac massa non lorem gravida feugiat nec quis erat. Sed a ornare diam. Nam eleifend dui eget lacus ultrices, eu dignissim arcu sollicitudin. Nunc rutrum vestibulum elit, ut pellentesque massa dictum a. Nulla et erat eros. Ut auctor, risus et tincidunt varius, ante ex tempor massa, a ultricies massa sapien eget lacus. Vivamus sit amet tortor libero. Quisque vitae posuere lectus.</p>
-            </div>
-            <div class="item item8">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Phasellus justo sem, tristique vitae ex et, faucibus condimentum est. Vivamus in suscipit odio, eget gravida erat. Nunc auctor metus aliquam ullamcorper consequat. Cras tempus efficitur feugiat. Aliquam magna nisl, consectetur sit amet nisi at, gravida volutpat nulla. Etiam ac iaculis sem. Sed et libero mollis lorem porttitor tristique. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-            </div>
-            <div class="item bottomItem bottomItem1">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem2">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem3">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem4">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-        </div>
-        <div class="container-mine">
-            <div class="item item5">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at erat auctor quam efficitur condimentum eget eget augue. Aliquam at aliquam nisl. Praesent non augue commodo, ultricies enim quis, aliquam justo. Nulla nec posuere sapien. Pellentesque sollicitudin nulla a vehicula tempus. Maecenas venenatis nibh ex, quis cursus est hendrerit sed. Etiam hendrerit blandit tincidunt.</p>
-            </div>
-            <div class="item item6">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Praesent suscipit placerat nibh vel dignissim. Vestibulum mattis nunc non posuere dapibus. Sed dapibus, ligula at auctor pretium, orci libero accumsan nulla, eu sagittis sapien erat sed nibh. Etiam quis vulputate erat. Maecenas sagittis orci id ipsum fermentum dapibus. Nam id elementum ligula, et venenatis mauris. Vestibulum nibh velit, tempor sed leo et, maximus commodo sem. Integer mattis nec augue sed eleifend. Nam feugiat lacus sed lectus varius, vel venenatis ante fermentum. Pellentesque mattis nunc ut elit accumsan, eget scelerisque lacus vestibulum. Etiam sed dui metus. Morbi id malesuada quam. Ut orci diam, tincidunt a odio ut, scelerisque tincidunt ipsum.</p>
-            </div>
-            <div class="item item7">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Vestibulum justo felis, facilisis vel lobortis vel, malesuada sit amet eros. Duis eget placerat tortor. Praesent ac massa non lorem gravida feugiat nec quis erat. Sed a ornare diam. Nam eleifend dui eget lacus ultrices, eu dignissim arcu sollicitudin. Nunc rutrum vestibulum elit, ut pellentesque massa dictum a. Nulla et erat eros. Ut auctor, risus et tincidunt varius, ante ex tempor massa, a ultricies massa sapien eget lacus. Vivamus sit amet tortor libero. Quisque vitae posuere lectus.</p>
-            </div>
-            <div class="item item8">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Phasellus justo sem, tristique vitae ex et, faucibus condimentum est. Vivamus in suscipit odio, eget gravida erat. Nunc auctor metus aliquam ullamcorper consequat. Cras tempus efficitur feugiat. Aliquam magna nisl, consectetur sit amet nisi at, gravida volutpat nulla. Etiam ac iaculis sem. Sed et libero mollis lorem porttitor tristique. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-            </div>
-            <div class="item bottomItem bottomItem1">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem2">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem3">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem4">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-        </div>
-        <div class="container-mine">
-            <div class="item item5">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at erat auctor quam efficitur condimentum eget eget augue. Aliquam at aliquam nisl. Praesent non augue commodo, ultricies enim quis, aliquam justo. Nulla nec posuere sapien. Pellentesque sollicitudin nulla a vehicula tempus. Maecenas venenatis nibh ex, quis cursus est hendrerit sed. Etiam hendrerit blandit tincidunt.</p>
-            </div>
-            <div class="item item6">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Praesent suscipit placerat nibh vel dignissim. Vestibulum mattis nunc non posuere dapibus. Sed dapibus, ligula at auctor pretium, orci libero accumsan nulla, eu sagittis sapien erat sed nibh. Etiam quis vulputate erat. Maecenas sagittis orci id ipsum fermentum dapibus. Nam id elementum ligula, et venenatis mauris. Vestibulum nibh velit, tempor sed leo et, maximus commodo sem. Integer mattis nec augue sed eleifend. Nam feugiat lacus sed lectus varius, vel venenatis ante fermentum. Pellentesque mattis nunc ut elit accumsan, eget scelerisque lacus vestibulum. Etiam sed dui metus. Morbi id malesuada quam. Ut orci diam, tincidunt a odio ut, scelerisque tincidunt ipsum.</p>
-            </div>
-            <div class="item item7">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Vestibulum justo felis, facilisis vel lobortis vel, malesuada sit amet eros. Duis eget placerat tortor. Praesent ac massa non lorem gravida feugiat nec quis erat. Sed a ornare diam. Nam eleifend dui eget lacus ultrices, eu dignissim arcu sollicitudin. Nunc rutrum vestibulum elit, ut pellentesque massa dictum a. Nulla et erat eros. Ut auctor, risus et tincidunt varius, ante ex tempor massa, a ultricies massa sapien eget lacus. Vivamus sit amet tortor libero. Quisque vitae posuere lectus.</p>
-            </div>
-            <div class="item item8">
-                <div class="top">
-                    <div class="title">
-                        <h4>Fake title</h4>
-                    </div>
-                    <div class="expandButton">
-                        <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                    </div>
-                </div>
-                <p>Phasellus justo sem, tristique vitae ex et, faucibus condimentum est. Vivamus in suscipit odio, eget gravida erat. Nunc auctor metus aliquam ullamcorper consequat. Cras tempus efficitur feugiat. Aliquam magna nisl, consectetur sit amet nisi at, gravida volutpat nulla. Etiam ac iaculis sem. Sed et libero mollis lorem porttitor tristique. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-            </div>
-            <div class="item bottomItem bottomItem1">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem2">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem3">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
-            <div class="item bottomItem bottomItem4">
-                <div class="download">
-                    <button type="">Download</button>
-                    <span>Downloads: 500</span>
-                </div>
-            </div>
+            <% } %>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

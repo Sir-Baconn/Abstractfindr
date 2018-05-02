@@ -1,6 +1,3 @@
-// $('button').click(function(){
-//     $('embed').toggle();
-// });
 for (let i = 1; i < 15; i++) {
     var down = true;
     $('.item' + i + ' .top .expandButton button').click(function(){
@@ -55,9 +52,17 @@ for (let i = 1; i < 15; i++) {
             // Remove the download count by hiding the element
             $('.bottomItem' + i).find('span').hide();
 
-            // Make the rating system span 2 columns and center it
+            // Make the rating system span 2 columns and center it if the page is the regular one
             $('.bottomItem' + i).css('text-align', 'center');
-            $('.bottomItem' + i).css('grid-column', i + '/' + (i+2));
+            if(!$('.single').length){
+                if(i < 5){
+                    $('.bottomItem' + i).css('grid-column', i + '/' + (i+2));
+                }else if(i < 9){
+                    $('.bottomItem' + i).css('grid-column', (i-4) + '/' + (i-2));
+                }else{
+                    $('.bottomItem' + i).css('grid-column', (i-8) + '/' + (i-6));                
+                }
+            }
 
             // Hide the download count next to the clicked abstract because it interferes when making the abstract spand horizontally
             $('.bottomItem' + (i+1)).find('span').hide();
@@ -90,7 +95,8 @@ $('#downloadModal .modal-footer .btn-primary').on('click', function(){
             }
 
             // Find the #selectedBox and remove it
-            var item = Number(String($('.selectedBox')[0].classList[1]).slice(-1));
+            var itemClass = $('.selectedBox')[0].classList[1];
+            var item = Number(itemClass.substring(4, itemClass.length));
             resetAbstracts(item);
         },
         error: console.error
@@ -106,7 +112,8 @@ $('#downloadModal .modal-footer .btn-secondary').on('click', function(){
     // Find the #selectedBox and remove it
     // Switch dropdown caret
     // Remove star rating thing
-    var item = Number(String($('.selectedBox')[0].classList[1]).slice(-1));
+    var itemClass = $('.selectedBox')[0].classList[1];
+    var item = Number(itemClass.substring(4, itemClass.length));
     resetAbstracts(item);
 });
 
@@ -136,7 +143,7 @@ function setUpRatingSubmission(ratingNumber){
             type: "GET",
             success: function(response){
                 // console.log(response);
-                // Add if to see if response was success!!!
+                // Add if to see if response was success
                 // (2)
                 // Find the anchor tag for the modal yes button and add attribute href = "pdfs/name".
                 $('#downloadModal').find('a').attr('data-docID', data.docID);
@@ -163,6 +170,7 @@ function countStars(element){
 
 // Reset abstracts as in after getting passed the modal for downloading push the selected abstract back up so that all abstracts are hidden and it is just the titles again
 function resetAbstracts(selectedBoxIndex){
+    console.log('box index: ' + selectedBoxIndex);
     $('.selectedBox').find('.selectedBoxText').removeClass('selectedBoxText');
     $('.selectedBox').find('.selectedBoxHeaderText').removeClass('selectedBoxHeaderText');
     $('.selectedBox .top .expandButton button').html('');
@@ -179,5 +187,4 @@ function resetAbstracts(selectedBoxIndex){
     if($('.item' + (selectedBoxIndex+1)).css('opacity') == 1)  { 
         $('.bottomItem' + (selectedBoxIndex+1)).find('span').show();
     }
-    // $('.bottomItem' + selectedBoxIndex).find('span').show();
 }
