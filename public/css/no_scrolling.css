@@ -1,0 +1,171 @@
+:root{
+    --yellow: #ffc600;
+    --black: #272727;
+    --morewhite: #f5f5f5;
+    --selectedbox: #ececec;
+    --hoverexpand: #e5e5e5;
+}
+
+html{
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after{
+    box-sizing: inherit;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    /* margin: 50px; */
+    margin: 0px;
+    /* margin-top: 25px; */
+    background-position: fixed;
+    /* letter-spacing: 1px; */
+}
+
+h1,h2,h3,h4,h5,h6{
+    margin: 0 0 10px 0;
+}
+
+.item{
+    border: 5px solid rgba(0, 0, 0, 0.03);
+    border-radius: 3px;
+    background-color: var(--morewhite);
+    overflow: hidden;
+}
+
+.item p{
+    margin: 40px 0 5px 0;
+    font-size: 12px;
+}
+
+/* Grid stuff starts here */
+
+/* For the actual site */
+.container{
+    /* display: grid;
+    width: 1440px;
+    margin: 0 auto;
+    grid-auto-flow: dense;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 120px);
+    grid-column-gap: 50px; */
+    /* grid-row-gap: 200px; */
+    display: grid;
+    width: 1440px;
+    margin: 0 auto;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 80px 25px;
+    grid-column-gap: 50px;
+    grid-row-gap: 4px;
+    grid-auto-flow: dense;
+    margin-bottom: 10px;
+}
+
+.bottomItem{
+    border: none;
+    background-color: white;
+}
+
+.bottomItem1{
+    grid-column: 1;
+}
+
+.bottomItem2{
+    grid-column: 2;
+}
+
+.bottomItem3{
+    grid-column: 3;
+}
+
+.bottomItem4{
+    grid-column: 4;
+}
+
+/* .container{
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(5, 1fr);
+} */
+
+.selectedBox{
+    grid-row: span 3;
+    background-color: var(--selectedbox);
+}
+
+.selectedBoxHeaderText{
+    font-size: 18px;
+    transition: all 0.3s;
+}
+
+.selectedBoxText{
+    font-size: 16px !important;
+}
+
+.top{
+    display: flex;
+}
+
+.top .expandButton{
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.top .expandButton button{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+}
+
+.top .expandButton button:hover{
+    background-color: var(--hoverexpand);
+}
+
+.download{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+
+.btn-primary{
+    background-color: red;
+    border-color: red;
+}
+
+.btn-primary:hover{
+    background-color: rgb(212, 0, 0);
+    border-color: rgb(212, 0, 0);
+}
+
+.btn-primary:focus{
+    border-color: rgb(160, 1, 1);
+    outline-color: rgb(160, 1, 1);
+    background-color: rgb(160, 1, 1);
+}
+
+.btn-primary:active{
+    border-color: rgb(160, 1, 1);
+    outline-color: rgb(160, 1, 1);
+    background-color: rgb(160, 1, 1);
+}
+
+.pageHeader{
+    width: 1440px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.pageHeader hr{
+    margin: 15px 0;
+}

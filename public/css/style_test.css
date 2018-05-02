@@ -1,0 +1,192 @@
+:root{
+    --yellow: #ffc600;
+    --black: #272727;
+    --morewhite: #f5f5f5;
+    --selectedbox: #ececec;
+    --hoverexpand: #e5e5e5;
+}
+
+html{
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after{
+    box-sizing: inherit;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    margin: 50px;
+    margin-top: 0; /* Used to be 25px, made 0 for red bar.*/
+    background-position: fixed;
+}
+
+h1,h2,h3,h4,h5,h6{
+    margin: 0 0 10px 0;
+    font-size: initial;
+}
+
+.horizontalBar{
+    width: 1440px;
+    height: 50px;
+    color: rgb(243, 236, 236);
+    background-color: red;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.horizontalBar h2{
+    font-size: 2rem;
+}
+
+.item{
+    border: 5px solid rgba(0, 0, 0, 0.03);
+    border-radius: 3px;
+    background-color: var(--morewhite);
+    overflow: hidden;
+}
+
+.item p{
+    margin: 0 0 5px 0;
+    font-size: 12px;
+}
+
+/* Grid stuff starts here */
+
+/* For the actual site */
+.container-mine{
+    display: grid;
+    width: 600px;
+    margin: 0 auto;
+    grid-template-columns: 600px;
+    grid-template-rows: repeat(1, 100px);
+    grid-column-gap: 50px;
+    /* grid-row-gap: 4px; */
+    grid-auto-flow: row;
+    margin-bottom: 50px;
+}
+
+.bottomItem{
+    border: none;
+    background-color: white;
+}
+
+.bottomItem1{
+    grid-row: 4;
+}
+
+.bottomItemSelected{
+    grid-row: auto !important;
+}
+
+.bottomItem2{
+    grid-row: 4;
+}
+
+.bottomItem3{
+    grid-row: 6;
+}
+
+.bottomItem4{
+    grid-row: 8;
+} 
+
+.selectedBox{
+    grid-row: span 3;
+    background-color: var(--selectedbox);
+}
+
+.selectedBoxHeaderText{
+    font-size: 18px;
+    transition: all 0.3s;
+}
+
+.selectedBoxText{
+    font-size: 16px !important;
+}
+
+.top{
+    display: flex;
+}
+
+.top .expandButton{
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.top .expandButton button{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+}
+
+.top .expandButton button:hover{
+    background-color: var(--hoverexpand);
+}
+
+.download{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.rating div{
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.ratingText{
+    padding-top: 4px;
+    text-align: center;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus, .btn:active:focus {
+    outline: 0 none !important;
+    box-shadow: none !important;
+}
+
+.btn-primary{
+    background-color: red;
+    border-color: red;
+}
+
+.btn-primary:hover{
+    background-color: rgb(212, 0, 0);
+    border-color: rgb(212, 0, 0);
+}
+
+.btn-primary:focus{
+    border-color: rgb(160, 1, 1);
+    outline-color: rgb(160, 1, 1);
+    background-color: rgb(160, 1, 1);
+}
+
+.btn-primary:active{
+    border-color: rgb(160, 1, 1) !important;
+    outline-color: rgb(160, 1, 1) !important;
+    background-color: rgb(160, 1, 1) !important;
+}
+
+.btn-primary:active:focus{
+    border-color: rgb(160, 1, 1) !important;
+    outline-color: rgb(160, 1, 1) !important;
+    background-color: rgb(160, 1, 1) !important;
+}
+
+.pageHeader{
+    width: 1440px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.pageHeader hr{
+    margin: 15px 0;
+}

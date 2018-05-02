@@ -1,0 +1,23 @@
+{
+  "name": "abstractfindr",
+  "version": "1.0.0",
+  "description": "Psych research project - social influence",
+  "main": "app.js",
+  "scripts": {
+    "test": "./app",
+    "start": "node ./app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sir-Baconn/Abstractfindr.git"
+  },
+  "author": "Steven Mattia",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mysql": "^2.15.0"
+  }
+}

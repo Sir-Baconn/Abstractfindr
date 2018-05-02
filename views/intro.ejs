@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Welcome</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <link href="/css/intro_style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="wholeContent">
+            <div class="pageHeader">
+                <h2>Welcome</h2>
+                <hr>
+                <span>Please fill out a short survey before continuing. <strong>ALL</strong> fields are <em>required</em>.</span>
+                <br><br>
+                <span>Please note: participating more than once is forbidden. <strong>Do NOT refresh or leave the page until you are done.</strong></span>
+            </div>
+            <form action="/intro" method="POST">
+                <div class="form-group">
+                    <label for="hearAbout">How did you hear about this?</label>
+                    <input type="text" class="form-control" id="hearAbout" name="hearAbout" aria-describedby="hearAboutHelp" required oninvalid="this.setCustomValidity('Please fill out this field before continuing.')"  oninput="setCustomValidity('')">
+                    <small id="hearAboutHelp" class="form-text text-muted">Please try to be specific.</small>
+                </div>
+                <div class="form-group">
+                    <label for="universityAffiliation">Which University are you affiliated with?</label>
+                    <input type="text" class="form-control" id="universityAffiliation" name="universityAffiliation" placeholder="University" required oninvalid="this.setCustomValidity('Please fill out this field before continuing.')"  oninput="setCustomValidity('')">
+                </div>
+                <div class="form-group">
+                    <label for="psychSubfield">Please state the subfield of Psychology you associate yourself with.</label>
+                    <input type="text" class="form-control" id="psychSubfield" name="psychSubfield" aria-describedby="psychSubfieldHelp" placeholder="Subfield" required oninvalid="this.setCustomValidity('Please fill out this field before continuing.')"  oninput="setCustomValidity('')">
+                    <small id="psychSubfieldHelp" class="form-text text-muted">Please try to be general.</small>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" required>
+                    I understand that I can <strong>NOT</strong> participate more than once.
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </body>
+</html>
