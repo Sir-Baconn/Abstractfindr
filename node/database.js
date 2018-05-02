@@ -7,10 +7,10 @@ var db;
 function startConnection() {
     db = mysql.createPool({
         connectionLimit: 10,
-        host: options.storageConfig.database.host,
-        user: options.storageConfig.database.user,
-        password: options.storageConfig.database.password,
-        database: options.storageConfig.database.database,
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_db,
         multipleStatements: true
     });
 }
