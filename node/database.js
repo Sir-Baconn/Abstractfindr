@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var options = require('./options');
+// var options = require('./options');
 
 // Global variable - gives access to mysql db connection
 var db;
