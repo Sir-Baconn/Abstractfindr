@@ -12,26 +12,48 @@
     <body>
         <div class="wholeContent">
             <div class="pageHeader">
-                <h2>Welcome</h2>
+                <h1>AbstractFindr</h1>
                 <hr>
+                <h5>Read and rate abstracts, then download full papers!</h5>
                 <span>Please fill out a short survey before continuing. <strong>ALL</strong> fields are <em>required</em>.</span>
-                <br><br>
-                <span>Please note: participating more than once is forbidden. <strong>Do NOT refresh or leave the page until you are done.</strong></span>
             </div>
             <form action="/intro" method="POST">
                 <div class="form-group">
-                    <label for="hearAbout">How did you hear about this?</label>
+                    <label for="psychSubfield">What subfield of Psychology do you most associate with?</label>
+                    <input type="text" class="form-control" id="psychSubfield" name="psychSubfield" aria-describedby="psychSubfieldHelp" required oninvalid="this.setCustomValidity('Please fill out this field before continuing.')"  oninput="setCustomValidity('')">
+                    <small id="psychSubfieldHelp" class="form-text">Please only choose one.</small>
+                </div>
+                <div class="form-group">
+                    <label for="universityAffiliation">Which academic institution are you affiliated with?</label>
+                    <input type="text" class="form-control" id="universityAffiliation" name="universityAffiliation" required oninvalid="this.setCustomValidity('Please fill out this field before continuing.')"  oninput="setCustomValidity('')">
+                </div>
+                <div class="form-group">
+                    <label for="hearAbout">How did you hear about AbstractFindr?</label>
                     <input type="text" class="form-control" id="hearAbout" name="hearAbout" aria-describedby="hearAboutHelp" required oninvalid="this.setCustomValidity('Please fill out this field before continuing.')"  oninput="setCustomValidity('')">
-                    <small id="hearAboutHelp" class="form-text text-muted">Please try to be specific.</small>
                 </div>
                 <div class="form-group">
-                    <label for="universityAffiliation">Which University are you affiliated with?</label>
-                    <input type="text" class="form-control" id="universityAffiliation" name="universityAffiliation" placeholder="University" required oninvalid="this.setCustomValidity('Please fill out this field before continuing.')"  oninput="setCustomValidity('')">
+                    <label for="gender">Gender</label>
+                    <select class="form-control" id="gender" name="gender" required oninvalid="this.setCustomValidity('Please fill out this field before continuing.')"  oninput="setCustomValidity('')">
+                        <option value=""></option>
+                        <option value="m">Male</option>
+                        <option value="f">Female</option>
+                        <option value="o">Choose not to say</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="psychSubfield">Please state the subfield of Psychology you associate yourself with.</label>
-                    <input type="text" class="form-control" id="psychSubfield" name="psychSubfield" aria-describedby="psychSubfieldHelp" placeholder="Subfield" required oninvalid="this.setCustomValidity('Please fill out this field before continuing.')"  oninput="setCustomValidity('')">
-                    <small id="psychSubfieldHelp" class="form-text text-muted">Please try to be general.</small>
+                    <label for="access">How do you access academic literature?</label>
+                    <select class="form-control" id="access" name="access" required oninvalid="this.setCustomValidity('Please fill out this field before continuing.')"  oninput="setCustomValidity('')">
+                        <option value=""></option>                    
+                        <option value="P">Almost always from a physical source</option>
+                        <option value="p">Usually from a physical source</option>
+                        <option value="e">Equally from physical & digital sources</option>
+                        <option value="d">Usually from a digital source</option>
+                        <option value="D">Almost always from a digital source</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="position">What is your current position? (e.g. professor, post doc, graduate student, etc)</label>
+                    <input type="text" class="form-control" id="position" name="position" aria-describedby="positionHelp" required oninvalid="this.setCustomValidity('Please fill out this field before continuing.')"  oninput="setCustomValidity('')">
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
@@ -39,7 +61,7 @@
                     I understand that I can <strong>NOT</strong> participate more than once.
                     </label>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary float-right">Next</button>
             </form>
         </div>
     </body>

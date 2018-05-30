@@ -21,6 +21,7 @@ body{
     margin: 50px;
     margin-top: 0; /* Used to be 25px, made 0 for red bar.*/
     background-position: fixed;
+    background-color: #afafaf;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -29,29 +30,38 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .horizontalBar{
-    width: 1440px;
-    height: 50px;
+    height: 75px;
     color: rgb(243, 236, 236);
-    background-color: red;
+    background-color: #2e55a9;
     margin: 0 auto;
-    margin-bottom: 10px;
+    margin-bottom: 4%;
     text-align: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .horizontalBar h2{
     font-size: 2rem;
+    padding-top: 3px
 }
 
 .item{
-    border: 5px solid rgba(0, 0, 0, 0.03);
+    border: 5px solid white;
     border-radius: 3px;
-    background-color: var(--morewhite);
+    background-color: white;
     overflow: hidden;
+    cursor: pointer;
+    position: relative;
 }
 
 .item p{
     margin: 0 0 5px 0;
-    font-size: 12px;
+    font-size: 10px;
+}
+
+.title{
+    text-align: center;
+    width: -webkit-fill-available;
 }
 
 /* Grid stuff starts here */
@@ -61,7 +71,7 @@ h1,h2,h3,h4,h5,h6{
     display: grid;
     width: 600px;
     margin: 0 auto;
-    grid-template-columns: 600px;
+    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
     grid-template-rows: repeat(1, 100px);
     grid-column-gap: 50px;
     /* grid-row-gap: 4px; */
@@ -71,7 +81,9 @@ h1,h2,h3,h4,h5,h6{
 
 .bottomItem{
     border: none;
-    background-color: white;
+    background-color: #afafaf;
+    font-size: 12px;
+    color: white;
 }
 
 .bottomItem1{
@@ -95,40 +107,18 @@ h1,h2,h3,h4,h5,h6{
 } 
 
 .selectedBox{
-    grid-row: span 3;
-    background-color: var(--selectedbox);
-}
-
-.selectedBoxHeaderText{
-    font-size: 18px;
-    transition: all 0.3s;
-}
-
-.selectedBoxText{
-    font-size: 16px !important;
+    background-color: white;
 }
 
 .top{
     display: flex;
-}
-
-.top .expandButton{
-    margin-left: auto;
-    margin-right: 0;
-}
-
-.top .expandButton button{
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background: none;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    overflow: hidden;
-}
-
-.top .expandButton button:hover{
-    background-color: var(--hoverexpand);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 15px;
+    -webkit-transform: translate(-50%, -50%);  
+    transform: translate(-50%, -50%);
 }
 
 .download{
@@ -137,15 +127,8 @@ h1,h2,h3,h4,h5,h6{
     font-size: 14px;
 }
 
-.rating div{
-    display: flex;
-    justify-content: center;
-    font-size: 14px;
-}
-
-.ratingText{
-    padding-top: 4px;
-    text-align: center;
+.rating{
+    height: 38px;
 }
 
 .btn:focus, .btn:active:focus, .btn.active:focus, .btn:active:focus {
@@ -154,31 +137,36 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .btn-primary{
-    background-color: red;
-    border-color: red;
+    background-color: #2e55a9;
+    border-color: #2e55a9;
 }
 
 .btn-primary:hover{
-    background-color: rgb(212, 0, 0);
-    border-color: rgb(212, 0, 0);
+    background-color: #4f5bdf;
+    border-color: #4f5bdf;
 }
 
 .btn-primary:focus{
-    border-color: rgb(160, 1, 1);
-    outline-color: rgb(160, 1, 1);
-    background-color: rgb(160, 1, 1);
+    border-color: #3f49b3;
+    outline-color: #3f49b3;
+    background-color: #3f49b3;
 }
 
 .btn-primary:active{
-    border-color: rgb(160, 1, 1) !important;
-    outline-color: rgb(160, 1, 1) !important;
-    background-color: rgb(160, 1, 1) !important;
+    border-color: #3f49b3 !important;
+    outline-color: #3f49b3 !important;
+    background-color: #3f49b3 !important;
 }
 
 .btn-primary:active:focus{
-    border-color: rgb(160, 1, 1) !important;
-    outline-color: rgb(160, 1, 1) !important;
-    background-color: rgb(160, 1, 1) !important;
+    border-color: #3f49b3 !important;
+    outline-color: #3f49b3 !important;
+    background-color: #3f49b3 !important;
+}
+
+.modal-backdrop.in,
+.modal-backdrop{
+    opacity: 0.05 !important;
 }
 
 .pageHeader{
@@ -189,4 +177,63 @@ h1,h2,h3,h4,h5,h6{
 
 .pageHeader hr{
     margin: 15px 0;
+}
+
+#downloadModalTitle{
+    font-size: 1.25rem;
+}
+
+#testModal .modal-body span{
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    font-size: 16px;
+}
+
+#testModal #theFooter{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+#testModal #footerRight,
+#testModal #footerLeft{
+    text-align: center;
+}
+
+#testModal .downloadButtons{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#testModal .downloadButtons a[disabled],
+#testModal .downloadButtons a[disabled]:hover{
+    pointer-events: none;
+    /* color: #2e55a9; */
+}
+
+#downloadText{
+    margin-bottom: 0;
+    padding-top: 15px;
+}
+
+#downloadAlertText{
+    font-size: 10px;
+    color: red;
+}
+
+.setHidden{
+    display: none;
+}
+
+#pagination{
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 5rem;
+    padding-left: 40px;
+}
+
+.viewedPaper{
+    opacity: 0.3;
+    cursor: default;
 }

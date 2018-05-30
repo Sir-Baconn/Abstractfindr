@@ -1,0 +1,118 @@
+:root{
+    --yellow: #ffc600;
+    --black: #272727;
+    --morewhite: #f5f5f5;
+    --selectedbox: #ececec;
+    --hoverexpand: #e5e5e5;
+}
+
+html{
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after{
+    box-sizing: inherit;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    margin: 50px;
+    margin-top: 25px;
+    background-position: fixed;
+    background-color: #afafaf;
+    /* letter-spacing: 1px; */
+}
+
+.wholeContent{
+    /* Used to be 1440px width with NO left or right margins */
+    /* width: 1440px; */
+    height: 800px;
+    margin: 0 auto;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 20px;
+    padding: 2rem;
+    background-color: #2e55a9;
+    color: white;
+    border: 5px solid #244386;
+    border-radius: 5px;
+}
+
+.pageHeader{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.pageHeader h5{
+    margin-bottom: 4rem;
+}
+
+hr{
+    margin-left: 25%;
+    background-color: white;
+    width: 50%;
+}
+
+.aboutText{
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+    overflow-wrap: break-word;
+}
+
+form{
+    width: 50%;
+    margin: 0 auto;
+}
+
+.form-group{
+    margin-bottom: 2rem;
+}
+
+form button{
+    margin-top: 30px;
+    margin-left: 71%;
+    color: rgb(80, 80, 80);
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus, .btn:active:focus {
+    outline: 0 none !important;
+    box-shadow: none !important;
+    color: rgb(80, 80, 80);
+}
+
+.btn-primary{
+    background-color: white;
+    border-color: white;
+    color: rgb(80, 80, 80);
+}
+
+.btn-primary:hover{
+    background-color: rgb(247, 247, 247);
+    border-color: rgb(247, 247, 247);
+    color: black;
+}
+
+.btn-primary:focus{
+    border-color: rgb(238, 238, 238);
+    outline-color: rgb(238, 238, 238);
+    background-color: rgb(238, 238, 238);
+    color: black;
+}
+
+.btn-primary:active{
+    border-color: rgb(238, 238, 238);
+    outline-color: rgb(238, 238, 238);
+    background-color: rgb(238, 238, 238);
+    color: black;
+}
+
+.btn-primary:active:focus{
+    border-color: rgb(238, 238, 238);
+    outline-color: rgb(238, 238, 238);
+    background-color: rgb(238, 238, 238);
+    color: black;
+}

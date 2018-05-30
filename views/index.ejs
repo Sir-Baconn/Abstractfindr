@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AbstractR</title>
+    <title>AbstractFindr</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -13,265 +13,1345 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/css/<%= cssFileName %>.css" />
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
     <script src="/js/starRating.js"></script>
+    <script src="/js/jquery-pagination.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/starRating.css">
 </head>
 <body>
-    <div class="entireThing">
-        <div class="horizontalBar"><h2>Abstractfindr</h2></div>
-        <div class="container-mine">
-            <% for(var i = 0; i < 4; i++) {%>
-                <div class="item item<%=i+1%>">
-                    <div class="top">
-                        <div class="title">
-                            <h4><%= docs[i].title %></h4>
-                        </div>
-                        <div class="expandButton">
-                            <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                        </div>
-                    </div>
-                    <br>
-                    <p><%= docs[i].abstract %></p>
-                </div>
-            <% } %>
-            <% for(var i = 0; i < 4; i++) {%>
-                <div class="item bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
-                    <% if(showDownloads > 0){ %>
-                        <% if(worldNum == 1){ %>
-                            <% if(control == 'L'){ %>
-                                <% if(lowHigh == 'l'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
-                                <% } %>
-                            <% }else if(control == 'H'){ %>
-                                <% if(lowHigh == 'h'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
-                                <% } %>
-                            <% } %>
-                        <% }else if(worldNum == 2){ %>
-                            <% if(control == 'L'){ %>
-                                <% if(lowHigh == 'l'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
-                                <% } %>
-                            <% }else if(control == 'H'){ %>
-                                <% if(lowHigh == 'h'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
-                                <% } %>
-                            <% } %>             
-                        <% }else if(worldNum == 3){ %>
-                            <% if(control == 'L'){ %>
-                                <% if(lowHigh == 'l'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
-                                <% } %>
-                            <% }else if(control == 'H'){ %>
-                                <% if(lowHigh == 'h'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
-                                <% } %>
-                            <% } %>                       
-                        <% }else{ %>
-                            <% if(control == 'L'){ %>
-                                <% if(lowHigh == 'l'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
-                                <% } %>
-                            <% }else if(control == 'H'){ %>
-                                <% if(lowHigh == 'h'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
-                                <% } %>
-                            <% } %>                      
-                        <% } %>
-                    <% } %>
-                </div>
-            <% } %>
+    <div class="entireThing pgs">
+        <div class="horizontalBar">
+            <h2>AbstractFindr</h2>
+            <h5>Read and rate abstracts, then download full papers!</h5>
         </div>
-        <div class="container-mine">
-            <% for(var i = 4; i < 8; i++) {%>
-                <div class="item item<%=i+1%>">
-                    <div class="top">
-                        <div class="title">
-                            <h4><%= docs[i].title %></h4>
-                        </div>
-                        <div class="expandButton">
-                            <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                        </div>
-                    </div>
-                    <br>
-                    <p><%= docs[i].abstract %></p>
-                </div>
-            <% } %>
-            <% for(var i = 4; i < 8; i++) {%>
-                <div class="item bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
-                    <% if(showDownloads > 0){ %>
-                        <% if(worldNum == 1){ %>
-                            <% if(control == 'L'){ %>
-                                <% if(lowHigh == 'l'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
-                                <% } %>
-                            <% }else if(control == 'H'){ %>
-                                <% if(lowHigh == 'h'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
-                                <% } %>
-                            <% } %>
-                        <% }else if(worldNum == 2){ %>
-                            <% if(control == 'L'){ %>
-                                <% if(lowHigh == 'l'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
-                                <% } %>
-                            <% }else if(control == 'H'){ %>
-                                <% if(lowHigh == 'h'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
-                                <% } %>
-                            <% } %>             
-                        <% }else if(worldNum == 3){ %>
-                            <% if(control == 'L'){ %>
-                                <% if(lowHigh == 'l'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
-                                <% } %>
-                            <% }else if(control == 'H'){ %>
-                                <% if(lowHigh == 'h'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
-                                <% } %>
-                            <% } %>                       
-                        <% }else{ %>
-                            <% if(control == 'L'){ %>
-                                <% if(lowHigh == 'l'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
-                                <% } %>
-                            <% }else if(control == 'H'){ %>
-                                <% if(lowHigh == 'h'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
-                                <% } %>
-                            <% } %>                      
-                        <% } %>
+        <div id="set-1" class="setHidden">
+            <div class="container-mine">
+                <% for(var i = 0; i < 3; i++) {%>
+                    <% if(viewedPapers.includes(docs[i].idfiles)){%>
+                        <div class="item item<%=i+1%> viewedPaper">
+                    <% }else{ %>
+                        <div class="item item<%=i+1%>">
                     <% } %>
-                </div>
-            <% } %>
+                            <div class="top">
+                                <div class="title">
+                                    <h6><%= docs[i].title %></h6>
+                                </div>
+                            </div>
+                            <br>
+                            <p style="display: none"><%= docs[i].abstract %></p>
+                        </div>
+                <% } %>
+                <% for(var i = 0; i < 3; i++) {%>
+                    <div class="bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                        <% if(showDownloads > 0){ %>
+                            <% if(worldNum == 1){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                    <% } %>
+                                <% } %>
+                            <% }else if(worldNum == 2){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                    <% } %>
+                                <% } %>             
+                            <% }else if(worldNum == 3){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                    <% } %>
+                                <% } %>                       
+                            <% }else{ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                    <% } %>
+                                <% } %>                      
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="container-mine">
+                <% for(var i = 3; i < 6; i++) {%>
+                    <% if(viewedPapers.includes(docs[i].idfiles)){%>
+                        <div class="item item<%=i+1%> viewedPaper">
+                    <% }else{ %>
+                        <div class="item item<%=i+1%>">
+                    <% } %>
+                            <div class="top">
+                                <div class="title">
+                                    <h6><%= docs[i].title %></h6>
+                                </div>
+                            </div>
+                            <br>
+                            <p style="display: none"><%= docs[i].abstract %></p>
+                        </div>
+                <% } %>
+                <% for(var i = 3; i < 6; i++) {%>
+                    <div class="bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                        <% if(showDownloads > 0){ %>
+                            <% if(worldNum == 1){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                    <% } %>
+                                <% } %>
+                            <% }else if(worldNum == 2){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                    <% } %>
+                                <% } %>             
+                            <% }else if(worldNum == 3){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                    <% } %>
+                                <% } %>                       
+                            <% }else{ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                    <% } %>
+                                <% } %>                      
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="container-mine">
+                <% for(var i = 6; i < 9; i++) {%>
+                    <% if(viewedPapers.includes(docs[i].idfiles)){%>
+                        <div class="item item<%=i+1%> viewedPaper">
+                    <% }else{ %>
+                        <div class="item item<%=i+1%>">
+                    <% } %>
+                            <div class="top">
+                                <div class="title">
+                                    <h6><%= docs[i].title %></h6>
+                                </div>
+                            </div>
+                            <br>
+                            <p style="display: none"><%= docs[i].abstract %></p>
+                        </div>
+                <% } %>
+                <% for(var i = 6; i < 9; i++) {%>
+                    <div class="bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                        <% if(showDownloads > 0){ %>
+                            <% if(worldNum == 1){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                    <% } %>
+                                <% } %>
+                            <% }else if(worldNum == 2){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                    <% } %>
+                                <% } %>             
+                            <% }else if(worldNum == 3){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                    <% } %>
+                                <% } %>                       
+                            <% }else{ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                    <% } %>
+                                <% } %>                      
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="container-mine">
+                <% for(var i = 9; i < 12; i++) {%>
+                    <% if(viewedPapers.includes(docs[i].idfiles)){%>
+                        <div class="item item<%=i+1%> viewedPaper">
+                    <% }else{ %>
+                        <div class="item item<%=i+1%>">
+                    <% } %>
+                            <div class="top">
+                                <div class="title">
+                                    <h6><%= docs[i].title %></h6>
+                                </div>
+                            </div>
+                            <br>
+                            <p style="display: none"><%= docs[i].abstract %></p>
+                        </div>
+                <% } %>
+                <% for(var i = 9; i < 12; i++) {%>
+                    <div class="bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                        <% if(showDownloads > 0){ %>
+                            <% if(worldNum == 1){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                    <% } %>
+                                <% } %>
+                            <% }else if(worldNum == 2){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                    <% } %>
+                                <% } %>             
+                            <% }else if(worldNum == 3){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                    <% } %>
+                                <% } %>                       
+                            <% }else{ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                    <% } %>
+                                <% } %>                      
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
         </div>
-        <div class="container-mine">
-            <% for(var i = 8; i < 12; i++) {%>
-                <div class="item item<%=i+1%>">
-                    <div class="top">
-                        <div class="title">
-                            <h4><%= docs[i].title %></h4>
-                        </div>
-                        <div class="expandButton">
-                            <button title="Click to expand"><i class="fa fa-caret-down"></i></button>
-                        </div>
-                    </div>
-                    <br>
-                    <p><%= docs[i].abstract %></p>
-                </div>
-            <% } %>
-            <% for(var i = 8; i < 12; i++) {%>
-                <div class="item bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
-                    <% if(showDownloads > 0){ %>
-                        <% if(worldNum == 1){ %>
-                            <% if(control == 'L'){ %>
-                                <% if(lowHigh == 'l'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
-                                <% } %>
-                            <% }else if(control == 'H'){ %>
-                                <% if(lowHigh == 'h'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
-                                <% } %>
-                            <% } %>
-                        <% }else if(worldNum == 2){ %>
-                            <% if(control == 'L'){ %>
-                                <% if(lowHigh == 'l'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
-                                <% } %>
-                            <% }else if(control == 'H'){ %>
-                                <% if(lowHigh == 'h'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
-                                <% } %>
-                            <% } %>             
-                        <% }else if(worldNum == 3){ %>
-                            <% if(control == 'L'){ %>
-                                <% if(lowHigh == 'l'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
-                                <% } %>
-                            <% }else if(control == 'H'){ %>
-                                <% if(lowHigh == 'h'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
-                                <% } %>
-                            <% } %>                       
-                        <% }else{ %>
-                            <% if(control == 'L'){ %>
-                                <% if(lowHigh == 'l'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
-                                <% } %>
-                            <% }else if(control == 'H'){ %>
-                                <% if(lowHigh == 'h'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
-                                <% }else if(lowHigh == 'r'){ %>
-                                    <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
-                                <% } %>
-                            <% } %>                      
-                        <% } %>
+        <div id="set-2" class="setHidden">
+            <div class="container-mine">
+                <% for(var i = 12; i < 15; i++) {%>
+                    <% if(viewedPapers.includes(docs[i].idfiles)){%>
+                        <div class="item item<%=i+1%> viewedPaper">
+                    <% }else{ %>
+                        <div class="item item<%=i+1%>">
                     <% } %>
-                </div>
-            <% } %>
+                            <div class="top">
+                                <div class="title">
+                                    <h6><%= docs[i].title %></h6>
+                                </div>
+                            </div>
+                            <br>
+                            <p style="display: none"><%= docs[i].abstract %></p>
+                        </div>
+                <% } %>
+                <% for(var i = 12; i < 15; i++) {%>
+                    <div class="bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                        <% if(showDownloads > 0){ %>
+                            <% if(worldNum == 1){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                    <% } %>
+                                <% } %>
+                            <% }else if(worldNum == 2){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                    <% } %>
+                                <% } %>             
+                            <% }else if(worldNum == 3){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                    <% } %>
+                                <% } %>                       
+                            <% }else{ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                    <% } %>
+                                <% } %>                      
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="container-mine">
+                <% for(var i = 15; i < 18; i++) {%>
+                    <% if(viewedPapers.includes(docs[i].idfiles)){%>
+                        <div class="item item<%=i+1%> viewedPaper">
+                    <% }else{ %>
+                        <div class="item item<%=i+1%>">
+                    <% } %>
+                            <div class="top">
+                                <div class="title">
+                                    <h6><%= docs[i].title %></h6>
+                                </div>
+                            </div>
+                            <br>
+                            <p style="display: none"><%= docs[i].abstract %></p>
+                        </div>
+                <% } %>
+                <% for(var i = 15; i < 18; i++) {%>
+                    <div class="bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                        <% if(showDownloads > 0){ %>
+                            <% if(worldNum == 1){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                    <% } %>
+                                <% } %>
+                            <% }else if(worldNum == 2){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                    <% } %>
+                                <% } %>             
+                            <% }else if(worldNum == 3){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                    <% } %>
+                                <% } %>                       
+                            <% }else{ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                    <% } %>
+                                <% } %>                      
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="container-mine">
+                <% for(var i = 18; i < 21; i++) {%>
+                    <% if(viewedPapers.includes(docs[i].idfiles)){%>
+                        <div class="item item<%=i+1%> viewedPaper">
+                    <% }else{ %>
+                        <div class="item item<%=i+1%>">
+                    <% } %>
+                            <div class="top">
+                                <div class="title">
+                                    <h6><%= docs[i].title %></h6>
+                                </div>
+                            </div>
+                            <br>
+                            <p style="display: none"><%= docs[i].abstract %></p>
+                        </div>
+                <% } %>
+                <% for(var i = 18; i < 21; i++) {%>
+                    <div class="bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                        <% if(showDownloads > 0){ %>
+                            <% if(worldNum == 1){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                    <% } %>
+                                <% } %>
+                            <% }else if(worldNum == 2){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                    <% } %>
+                                <% } %>             
+                            <% }else if(worldNum == 3){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                    <% } %>
+                                <% } %>                       
+                            <% }else{ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                    <% } %>
+                                <% } %>                      
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="container-mine">
+                <% for(var i = 21; i < 24; i++) {%>
+                    <% if(viewedPapers.includes(docs[i].idfiles)){%>
+                        <div class="item item<%=i+1%> viewedPaper">
+                    <% }else{ %>
+                        <div class="item item<%=i+1%>">
+                    <% } %>
+                            <div class="top">
+                                <div class="title">
+                                    <h6><%= docs[i].title %></h6>
+                                </div>
+                            </div>
+                            <br>
+                            <p style="display: none"><%= docs[i].abstract %></p>
+                        </div>
+                <% } %>
+                <% for(var i = 21; i < 24; i++) {%>
+                    <div class="bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                        <% if(showDownloads > 0){ %>
+                            <% if(worldNum == 1){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                    <% } %>
+                                <% } %>
+                            <% }else if(worldNum == 2){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                    <% } %>
+                                <% } %>             
+                            <% }else if(worldNum == 3){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                    <% } %>
+                                <% } %>                       
+                            <% }else{ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                    <% } %>
+                                <% } %>                      
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+        <div id="set-3" class="setHidden">
+            <div class="container-mine">
+                <% for(var i = 24; i < 27; i++) {%>
+                    <% if(viewedPapers.includes(docs[i].idfiles)){%>
+                        <div class="item item<%=i+1%> viewedPaper">
+                    <% }else{ %>
+                        <div class="item item<%=i+1%>">
+                    <% } %>
+                            <div class="top">
+                                <div class="title">
+                                    <h6><%= docs[i].title %></h6>
+                                </div>
+                            </div>
+                            <br>
+                            <p style="display: none"><%= docs[i].abstract %></p>
+                        </div>
+                <% } %>
+                <% for(var i = 24; i < 27; i++) {%>
+                    <div class="bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                        <% if(showDownloads > 0){ %>
+                            <% if(worldNum == 1){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                    <% } %>
+                                <% } %>
+                            <% }else if(worldNum == 2){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                    <% } %>
+                                <% } %>             
+                            <% }else if(worldNum == 3){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                    <% } %>
+                                <% } %>                       
+                            <% }else{ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                    <% } %>
+                                <% } %>                      
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="container-mine">
+                <% for(var i = 27; i < 30; i++) {%>
+                    <% if(viewedPapers.includes(docs[i].idfiles)){%>
+                        <div class="item item<%=i+1%> viewedPaper">
+                    <% }else{ %>
+                        <div class="item item<%=i+1%>">
+                    <% } %>
+                            <div class="top">
+                                <div class="title">
+                                    <h6><%= docs[i].title %></h6>
+                                </div>
+                            </div>
+                            <br>
+                            <p style="display: none"><%= docs[i].abstract %></p>
+                        </div>
+                <% } %>
+                <% for(var i = 27; i < 30; i++) {%>
+                    <div class="bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                        <% if(showDownloads > 0){ %>
+                            <% if(worldNum == 1){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                    <% } %>
+                                <% } %>
+                            <% }else if(worldNum == 2){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                    <% } %>
+                                <% } %>             
+                            <% }else if(worldNum == 3){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                    <% } %>
+                                <% } %>                       
+                            <% }else{ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                    <% } %>
+                                <% } %>                      
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="container-mine">
+                <% for(var i = 30; i < 33; i++) {%>
+                    <% if(viewedPapers.includes(docs[i].idfiles)){%>
+                        <div class="item item<%=i+1%> viewedPaper">
+                    <% }else{ %>
+                        <div class="item item<%=i+1%>">
+                    <% } %>
+                            <div class="top">
+                                <div class="title">
+                                    <h6><%= docs[i].title %></h6>
+                                </div>
+                            </div>
+                            <br>
+                            <p style="display: none"><%= docs[i].abstract %></p>
+                        </div>
+                <% } %>
+                <% for(var i = 30; i < 33; i++) {%>
+                    <div class="bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                        <% if(showDownloads > 0){ %>
+                            <% if(worldNum == 1){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                    <% } %>
+                                <% } %>
+                            <% }else if(worldNum == 2){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                    <% } %>
+                                <% } %>             
+                            <% }else if(worldNum == 3){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                    <% } %>
+                                <% } %>                       
+                            <% }else{ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                    <% } %>
+                                <% } %>                      
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="container-mine">
+                <% for(var i = 33; i < 36; i++) {%>
+                    <% if(viewedPapers.includes(docs[i].idfiles)){%>
+                        <div class="item item<%=i+1%> viewedPaper">
+                    <% }else{ %>
+                        <div class="item item<%=i+1%>">
+                    <% } %>
+                            <div class="top">
+                                <div class="title">
+                                    <h6><%= docs[i].title %></h6>
+                                </div>
+                            </div>
+                            <br>
+                            <p style="display: none"><%= docs[i].abstract %></p>
+                        </div>
+                <% } %>
+                <% for(var i = 33; i < 36; i++) {%>
+                    <div class="bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                        <% if(showDownloads > 0){ %>
+                            <% if(worldNum == 1){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                    <% } %>
+                                <% } %>
+                            <% }else if(worldNum == 2){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                    <% } %>
+                                <% } %>             
+                            <% }else if(worldNum == 3){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                    <% } %>
+                                <% } %>                       
+                            <% }else{ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                    <% } %>
+                                <% } %>                      
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+        <div id="set-4" class="setHidden">
+            <div class="container-mine">
+                <% for(var i = 36; i < 39; i++) {%>
+                    <% if(viewedPapers.includes(docs[i].idfiles)){%>
+                        <div class="item item<%=i+1%> viewedPaper">
+                    <% }else{ %>
+                        <div class="item item<%=i+1%>">
+                    <% } %>
+                            <div class="top">
+                                <div class="title">
+                                    <h6><%= docs[i].title %></h6>
+                                </div>
+                            </div>
+                            <br>
+                            <p style="display: none"><%= docs[i].abstract %></p>
+                        </div>
+                <% } %>
+                <% for(var i = 36; i < 39; i++) {%>
+                    <div class="bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                        <% if(showDownloads > 0){ %>
+                            <% if(worldNum == 1){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                    <% } %>
+                                <% } %>
+                            <% }else if(worldNum == 2){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                    <% } %>
+                                <% } %>             
+                            <% }else if(worldNum == 3){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                    <% } %>
+                                <% } %>                       
+                            <% }else{ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                    <% } %>
+                                <% } %>                      
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="container-mine">
+                <% for(var i = 39; i < 42; i++) {%>
+                    <% if(viewedPapers.includes(docs[i].idfiles)){%>
+                        <div class="item item<%=i+1%> viewedPaper">
+                    <% }else{ %>
+                        <div class="item item<%=i+1%>">
+                    <% } %>
+                            <div class="top">
+                                <div class="title">
+                                    <h6><%= docs[i].title %></h6>
+                                </div>
+                            </div>
+                            <br>
+                            <p style="display: none"><%= docs[i].abstract %></p>
+                        </div>
+                <% } %>
+                <% for(var i = 39; i < 42; i++) {%>
+                    <div class="bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                        <% if(showDownloads > 0){ %>
+                            <% if(worldNum == 1){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                    <% } %>
+                                <% } %>
+                            <% }else if(worldNum == 2){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                    <% } %>
+                                <% } %>             
+                            <% }else if(worldNum == 3){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                    <% } %>
+                                <% } %>                       
+                            <% }else{ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                    <% } %>
+                                <% } %>                      
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="container-mine">
+                <% for(var i = 42; i < 45; i++) {%>
+                    <% if(viewedPapers.includes(docs[i].idfiles)){%>
+                        <div class="item item<%=i+1%> viewedPaper">
+                    <% }else{ %>
+                        <div class="item item<%=i+1%>">
+                    <% } %>
+                            <div class="top">
+                                <div class="title">
+                                    <h6><%= docs[i].title %></h6>
+                                </div>
+                            </div>
+                            <br>
+                            <p style="display: none"><%= docs[i].abstract %></p>
+                        </div>
+                <% } %>
+                <% for(var i = 42; i < 45; i++) {%>
+                    <div class="bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                        <% if(showDownloads > 0){ %>
+                            <% if(worldNum == 1){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                    <% } %>
+                                <% } %>
+                            <% }else if(worldNum == 2){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                    <% } %>
+                                <% } %>             
+                            <% }else if(worldNum == 3){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                    <% } %>
+                                <% } %>                       
+                            <% }else{ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                    <% } %>
+                                <% } %>                      
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="container-mine">
+                <% for(var i = 45; i < 48; i++) {%>
+                    <% if(viewedPapers.includes(docs[i].idfiles)){%>
+                        <div class="item item<%=i+1%> viewedPaper">
+                    <% }else{ %>
+                        <div class="item item<%=i+1%>">
+                    <% } %>
+                            <div class="top">
+                                <div class="title">
+                                    <h6><%= docs[i].title %></h6>
+                                </div>
+                            </div>
+                            <br>
+                            <p style="display: none"><%= docs[i].abstract %></p>
+                        </div>
+                <% } %>
+                <% for(var i = 45; i < 48; i++) {%>
+                    <div class="bottomItem bottomItem<%=i+1%>" data-docID="<%= docs[i].idfiles %>">
+                        <% if(showDownloads > 0){ %>
+                            <% if(worldNum == 1){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_1%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_1%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_1%></span>
+                                    <% } %>
+                                <% } %>
+                            <% }else if(worldNum == 2){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_2%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_2%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_2%></span>
+                                    <% } %>
+                                <% } %>             
+                            <% }else if(worldNum == 3){ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_3%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_3%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_3%></span>
+                                    <% } %>
+                                <% } %>                       
+                            <% }else{ %>
+                                <% if(control == 'L'){ %>
+                                    <% if(lowHigh == 'l'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_l_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_L_r_4%></span>
+                                    <% } %>
+                                <% }else if(control == 'H'){ %>
+                                    <% if(lowHigh == 'h'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_h_4%></span>
+                                    <% }else if(lowHigh == 'r'){ %>
+                                        <span>Downloads: <%= docs[i].downloads_H_r_4%></span>
+                                    <% } %>
+                                <% } %>                      
+                            <% } %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="downloadModalTitle">Would you like to download this paper?</h5>
-            </div>
-            <div class="modal-body">
-                You can not continue without choosing to download this paper or not. If you choose yes it will download the paper to your device, then you will be able to read more abstracts. If you choose no, you will be able to read more abstracts.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No thanks</button>
-                <a download><button type="button" class="btn btn-primary">Yes, download now</button></a>
-            </div>
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="downloadModalTitle">Would you like to download this paper?</h5>
+                    </div>
+                    <div class="modal-body">
+                        You can not continue without choosing to download this paper or not. If you choose yes it will download the paper to your device, then you will be able to read more abstracts. If you choose no, you will be able to read more abstracts.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No thanks</button>
+                        <a download><button type="button" class="btn btn-primary">Yes, download now</button></a>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="testModalTitle"></h5>
+                    </div>
+                    <div class="modal-body">
+                       
+                    </div>
+                    <div id="theFooter" class="modal-footer">
+                        <div id="footerLeft">
+                        </div>
+                        <div id="footerRight">
+                            <p id="downloadText">Would you like to download the full paper?</p>
+                            <p id="downloadAlertText">* Please rate before choosing to download or not</p> 
+                            <div class="downloadButtons">
+                                <a download disabled><button type="button" class="btn btn-primary" disabled>Yes</button></a>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" disabled>No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <ul id="pagination" class="pagination-sm"></ul>
     </div>
     <script src="/js/<%= jsFileName %>.js"></script>
     <script>

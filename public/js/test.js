@@ -67,13 +67,13 @@ $('.downloadButton').on('click', function(){
             'currDownloads': Number($.trim($(this).parent().parent().find('span')[0].innerText).split(': ')[1]),
             'docID': Number($($(this).parent().parent().find('a')[0]).attr('data-docID'))
         };
-        console.log(data);
+        // console.log(data);
         $.ajax({
             url: "",
             data: data,
             type: "GET",
             success: function(response){
-                console.log(response);
+                // console.log(response);
             },
             error: console.error
         });
@@ -82,13 +82,13 @@ $('.downloadButton').on('click', function(){
             'noDownloads': 1,
             'docID': Number($($(this).parent().parent().find('a')[0]).attr('data-docID'))
         };
-        console.log(data);
+        // console.log(data);
         $.ajax({
             url: "",
             data: data,
             type: "GET",
             success: function(response){
-                console.log(response);
+                // console.log(response);
             },
             error: console.error
         });

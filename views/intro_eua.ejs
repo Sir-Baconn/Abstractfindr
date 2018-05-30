@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Welcome</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <link href="/css/intro_eua_style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="wholeContent">
+            <div class="pageHeader">
+                <h1>AbstractFindr</h1>
+                <hr>
+                <h5>Read and rate abstracts, then download full papers!</h5>
+            </div>
+            <div class="aboutText">
+                AbstractFindr is a place to read, rate, and download scientific abstracts. After a short survey you will be brought to a page full of titles. You can click on these titles to engage further with the paper.
+            </div>
+            <form action="/intro_eua" method="POST">
+                <div class="form-group">
+                    <label for="psychSubfield">End User Agreement</label>
+                    <textarea readonly rows="7" style="resize: none" type="text" class="form-control" id="eua" name="eua">This is the end user agreement text.</textarea>
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label float-right">
+                    <input type="checkbox" class="form-check-input" required>
+                    I accept the EUA.
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary float-right">Next</button>
+            </form>
+        </div>
+    </body>
+</html>

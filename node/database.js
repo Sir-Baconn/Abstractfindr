@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-// var options = require('./options');
+var options = require('./options');
 
 // Global variable - gives access to mysql db connection
 var db;
@@ -7,10 +7,10 @@ var db;
 function startConnection() {
     db = mysql.createPool({
         connectionLimit: 10,
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_db,
+        host: options.storageConfig.database.host,
+        user: options.storageConfig.database.user,
+        password: options.storageConfig.database.password,
+        database: options.storageConfig.database.database,
         multipleStatements: true
     });
 }
@@ -34,7 +34,7 @@ function getDocsRandomOrder(worldNum, control, regularLowHigh, callback) {
 
 function getDocsSortedByDownloads(worldNum, control, regularLowHigh, callback){
     var world = 'downloads_' + control + '_' + regularLowHigh + '_' + worldNum;
-    var query = 'SELECT idfiles, name, abstract, title, '+ world + ' FROM abstractfindr_demo.files ORDER BY ' + world + ' DESC';
+    var query = 'SELECT idfiles, name, abstract, title, '+ world + ' FROM abstractfindr_demo.files ORDER BY ' + world + ' DESC, RAND()';
     var q = db.query(query, function(err, result){
         if(err) throw err;
         return callback(result);

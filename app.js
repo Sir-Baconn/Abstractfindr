@@ -15,7 +15,10 @@ app.use(express.static(__dirname + "/public"));
 app.use(session({
     resave: true,
     saveUninitialized: true,
-    secret: 'fdasfrhegasr'
+    secret: 'fdasfrhegasr',
+    cookie: {
+        maxAge: 3600000
+    }
 }));
 
 // GET / : the main page
@@ -28,8 +31,14 @@ app.get('/', function(req, res, next) {
      req.connection.socket.remoteAddress).split(",")[0];
     // console.log(ip);
 
+    // if they haven't done the EUA, load that page instead for /
+    if(!req.session.didEUA){
+        res.render('intro_eua');
+        return;
+    }
+
     // If they haven't done the intro survey, load that page instead for /
-    if(!req.session.didSurvey){
+    if(req.session.didEUA && !req.session.didSurvey){
         // console.log('didnt do the survey...');
         res.render('intro');
         return;                     // return otherwise this will continue on, could have just put the rest of the code unerneath this in an else and we wouldn't need return here
@@ -42,11 +51,14 @@ app.get('/', function(req, res, next) {
     // will update the wrong world i.e. if the user is on world 1 and hits download, if we changed the worldNum here
     // then it might go to say world 2 and update 2 instead of 1.
     // This keeps it so that the user and db are all on the same world at all times for the user's session.
-    if(req.query.currDownloads || req.query.noDownloads || req.query.rating){
+
+    // MIGHT WANT TO ADD REQ.SESSION.WORLDNUM CAUSE IF THAT IS SET WE DONT WANT TO CHOOSE ANOTHER (SHOULD HELP WITH REFRESH)
+    if(req.query.currDownloads || req.query.noDownloads || req.query.rating || req.session.worldNum){
         
     }else{
         req.session.worlds = helper.getRandomInt(1, 101);
         req.session.worldNum = 0;
+        req.session.viewedPapers = [];
         // 25 25 25 25 for each world
         if(req.session.worlds >= 1 && req.session.worlds <= 25){
             // Enter world 1
@@ -79,26 +91,20 @@ app.get('/', function(req, res, next) {
         });
     }else if(req.query.rating){
         // Submitting rating
+        req.session.viewedPapers.push(Number(req.query.docID));
         database.insertRatings(req.query.docID, req.query.rating, req.session.worldNum, req.session.control, req.session.lowHigh, function(result){
             database.getFileName(req.query.docID, function(fileName){
                 res.send(fileName[0]);
             });
         });
     }else{
-        // Just entering the page
-        var highLow = helper.getRandomInt(1, 101);  // 50 50 for whether it enters possibility of low influence or high influence
-        // console.log('highLow was: ' + highLow);
-        if(highLow >= 1 && highLow <= 50){
-            req.session.control = 'L';
-            // Enter low influence chance
-            var influenceOrRegular = helper.getRandomInt(1, 101);               // 20 80 for low influence page vs regular page
-            if(influenceOrRegular >= 1 && influenceOrRegular <= 20){
-                // Enter regular page
-                console.log('entering normal page (L r), world ' + req.session.worldNum);
-                req.session.lowHigh = 'r';
-                database.getDocsRandomOrder(req.session.worldNum, req.session.control, req.session.lowHigh, function(docs) {
+        // If control is set, don't recalculate control/highlow and query, just display already chosen docs so they are locked in this view
+        if(req.session.control){
+            if(req.session.control == 'L'){
+                if(req.session.lowHigh == 'r'){
                     res.render('index', {
-                        docs: docs,
+                        docs: req.session.docs,
+                        viewedPapers: req.session.viewedPapers,
                         control: req.session.control,
                         lowHigh: req.session.lowHigh,
                         worldNum: req.session.worldNum,
@@ -106,14 +112,10 @@ app.get('/', function(req, res, next) {
                         jsFileName: 'main',
                         showDownloads: 0
                     });
-                });
-            }else{
-                // Enter controlled low influence page
-                console.log('entering low influence page (L l), world ' + req.session.worldNum);
-                req.session.lowHigh = 'l';                
-                database.getDocsRandomOrder(req.session.worldNum, req.session.control, req.session.lowHigh, function(docs) {
+                }else{                   
                     res.render('index', {
-                        docs: docs,
+                        docs: req.session.docs,
+                        viewedPapers: req.session.viewedPapers,
                         control: req.session.control,
                         lowHigh: req.session.lowHigh,
                         worldNum: req.session.worldNum,
@@ -121,34 +123,23 @@ app.get('/', function(req, res, next) {
                         jsFileName: 'main',
                         showDownloads: 1
                     });
-                });
-            }
-        }else{
-            req.session.control = 'H';            
-            // Enter high influence chance
-            var influenceOrRegular = helper.getRandomInt(1, 101);               // 20 80 for high influence page vs regular page
-            if(influenceOrRegular >= 1 && influenceOrRegular <= 20){
-                // Enter regular page
-                console.log('entering normal page (H r), world ' + req.session.worldNum);
-                req.session.lowHigh = 'r';                                
-                database.getDocsRandomOrder(req.session.worldNum, req.session.control, req.session.lowHigh, function(docs) {
+                }
+            }else{
+                if(req.session.lowHigh == 'r'){                  
                     res.render('index_influenced', {
-                        docs: docs,
+                        docs: req.session.docs,
+                        viewedPapers: req.session.viewedPapers,
                         control: req.session.control,
                         lowHigh: req.session.lowHigh,
                         worldNum: req.session.worldNum,
                         cssFileName: 'style_test',
                         jsFileName: 'main',
-                        showDownloads: 1
+                        showDownloads: 0
                     });
-                });
-            }else{
-                // Enter controlled high influence page
-                console.log('entering high influence page (H h), world ' + req.session.worldNum);
-                req.session.lowHigh = 'h';
-                database.getDocsSortedByDownloads(req.session.worldNum, req.session.control, req.session.lowHigh, function(docs){
+                }else{                   
                     res.render('index_influenced', {
-                        docs: docs,
+                        docs: req.session.docs,
+                        viewedPapers: req.session.viewedPapers,
                         control: req.session.control,
                         lowHigh: req.session.lowHigh,
                         worldNum: req.session.worldNum,
@@ -156,7 +147,90 @@ app.get('/', function(req, res, next) {
                         jsFileName: 'main',
                         showDownloads: 2
                     });
-                });
+                }
+            }
+        }else{
+            // Just entering the page
+            var highLow = helper.getRandomInt(1, 101);  // 50 50 for whether it enters possibility of low influence or high influence
+            // console.log('highLow was: ' + highLow);
+            if(highLow >= 1 && highLow <= 50){
+                req.session.control = 'L';
+                // Enter low influence chance
+                var influenceOrRegular = helper.getRandomInt(1, 101);               // 20 80 for low influence page vs regular page
+                if(influenceOrRegular >= 1 && influenceOrRegular <= 20){
+                    // Enter regular page
+                    // console.log('entering normal page (L r), world ' + req.session.worldNum);
+                    req.session.lowHigh = 'r';
+                    database.getDocsRandomOrder(req.session.worldNum, req.session.control, req.session.lowHigh, function(docs) {
+                        req.session.docs = docs;
+                        res.render('index', {
+                            docs: docs,
+                            viewedPapers: req.session.viewedPapers,
+                            control: req.session.control,
+                            lowHigh: req.session.lowHigh,
+                            worldNum: req.session.worldNum,
+                            cssFileName: 'style',
+                            jsFileName: 'main',
+                            showDownloads: 0
+                        });
+                    });
+                }else{
+                    // Enter controlled low influence page
+                    // console.log('entering low influence page (L l), world ' + req.session.worldNum);
+                    req.session.lowHigh = 'l';                
+                    database.getDocsRandomOrder(req.session.worldNum, req.session.control, req.session.lowHigh, function(docs) {
+                        req.session.docs = docs;
+                        res.render('index', {
+                            docs: docs,
+                            viewedPapers: req.session.viewedPapers,
+                            control: req.session.control,
+                            lowHigh: req.session.lowHigh,
+                            worldNum: req.session.worldNum,
+                            cssFileName: 'style',
+                            jsFileName: 'main',
+                            showDownloads: 1
+                        });
+                    });
+                }
+            }else{
+                req.session.control = 'H';            
+                // Enter high influence chance
+                var influenceOrRegular = helper.getRandomInt(1, 101);               // 20 80 for high influence page vs regular page
+                if(influenceOrRegular >= 1 && influenceOrRegular <= 20){
+                    // Enter regular page
+                    // console.log('entering normal page (H r), world ' + req.session.worldNum);
+                    req.session.lowHigh = 'r';                                
+                    database.getDocsRandomOrder(req.session.worldNum, req.session.control, req.session.lowHigh, function(docs) {
+                        req.session.docs = docs;
+                        res.render('index_influenced', {
+                            docs: docs,
+                            viewedPapers: req.session.viewedPapers,
+                            control: req.session.control,
+                            lowHigh: req.session.lowHigh,
+                            worldNum: req.session.worldNum,
+                            cssFileName: 'style_test',
+                            jsFileName: 'main',
+                            showDownloads: 0
+                        });
+                    });
+                }else{
+                    // Enter controlled high influence page
+                    // console.log('entering high influence page (H h), world ' + req.session.worldNum);
+                    req.session.lowHigh = 'h';
+                    database.getDocsSortedByDownloads(req.session.worldNum, req.session.control, req.session.lowHigh, function(docs){
+                        req.session.docs = docs;
+                        res.render('index_influenced', {
+                            docs: docs,
+                            viewedPapers: req.session.viewedPapers,
+                            control: req.session.control,
+                            lowHigh: req.session.lowHigh,
+                            worldNum: req.session.worldNum,
+                            cssFileName: 'style_test',
+                            jsFileName: 'main',
+                            showDownloads: 2
+                        });
+                    });
+                }
             }
         }
     }
@@ -179,6 +253,9 @@ app.post('/intro', function(req, res, next){
         'hearAbout': req.body.hearAbout,
         'university': req.body.universityAffiliation,
         'psychField': req.body.psychSubfield,
+        'gender': req.body.gender,
+        'access': req.body.access,
+        'position': req.body.position,
         'timestamp': new Date().toISOString().slice(0, 19).replace('T', ' ')
     };
     
@@ -192,6 +269,12 @@ app.post('/intro', function(req, res, next){
     
 });
 
+app.post('/intro_eua', function(req, res, next){
+    req.session.didEUA = true;
+    res.redirect('/')
+    return;
+});
+
 app.listen(process.env.PORT || 5000, '0.0.0.0', function() {
-    console.log("Server running on 5000!");
+    // console.log("Server running on 5000!");
 });
